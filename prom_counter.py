@@ -23,47 +23,29 @@ if __name__ == '__main__':
     c = Counter('static_increment_counter', 'Counter that increments by 50 every 2 seconds')
     g = Gauge('static_increment_gauge', 'Gauge that increments by 50 every 2 seconds')
 
-
-    #c_lin = Counter('linear_increment_counter', 'Counter that increments in a linear fashion every 15 seconds')
-    #g_lin = Gauge('linear_increment_gauge', 'Gauge that increments in a linear fashion every 15 seconds')
-
     c_rand = Counter('random_increment_counter', 'Counter that increments in a random fashion every 15 seconds')
     g_rand = Gauge('random_increment_gauge', 'Gauge that increments in a random fashion every 15 seconds')
 
     #i  = 1
     run = 0
-
     random.seed()
 
     while True:
-    	
-    	log.info("*******RUN %i **********",run)
+        log.info("*******RUN %i **********",run)
 
-    	# Increment the counter and gauge by the same value at each run
-    	c.inc(50)
-    	g.inc(50)
-
-    	# Increment the counter and gauge by an increasing increment
-    	#c_lin.inc(i)
-    	#g_lin.inc(i)
+        # Increment the counter and gauge by the same value at each run
+        c.inc(50)
+        g.inc(50)
 
         rand = random.randint(1,1000)
         c_rand.inc(rand)
         g_rand.inc(rand)
         log.info("Incremented Rand by {0}".format(rand))
-    	 # Scrape endpoint to get metric values logged to stdout
-    	metrics = requests.get("http://localhost:8000/").content
-    	for family in text_string_to_metric_families(metrics.decode()):
-    		for sample in family.samples:
-    			log.info("Name: {0} Labels: {1}  Value: {2}".format(*sample))
+        # Scrape endpoint to get metric values logged to stdout
+        metrics = requests.get("http://localhost:8000/").content
+        for family in text_string_to_metric_families(metrics.decode()):
+            for sample in family.samples:
+                 log.info("Name: {0} Labels: {1}  Value: {2}".format(*sample))
 
-    	time.sleep(15)
-
-
-    	#i+=2
-    	run+=1
-
-
-
-
-        
+        time.sleep(15)
+        run+=1
