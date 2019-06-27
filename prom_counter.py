@@ -26,7 +26,7 @@ if __name__ == '__main__':
 
     c_lin = Counter('linear_increment_counter', 'Counter that increments in a linear fashion 2 every 2 seconds')
     g_lin = Counter('linear_increment_gauge', 'Gauge that increments in a linear fashion every 2 seconds')
-    i  = 1
+    i  = 100
     run = 0
     while True:
     	
