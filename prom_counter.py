@@ -46,6 +46,7 @@ if __name__ == '__main__':
         for family in text_string_to_metric_families(metrics.decode()):
             for sample in family.samples:
                  log.info("Name: {0} Labels: {1}  Value: {2}".format(*sample))
+                 log.info("User email: masked_user@example.com")
 
         time.sleep(15)
         run+=1
