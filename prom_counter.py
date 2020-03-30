@@ -7,6 +7,7 @@ import sys
 import requests
 import logging
 import sys
+import json
 
 #logging
 log = logging.getLogger(__name__)
@@ -17,8 +18,21 @@ log.addHandler(out_hdlr)
 log.setLevel(logging.INFO)
 
 
+# a Python object (dict):
+
+
+
 if __name__ == '__main__':
     start_http_server(8000)
+    
+    x = {
+      "asctime": "2020-03-27 05:51:50,017",
+      "levelname": "INFO",
+      "message": "Initializing app on port: 8080",
+      "app_port": 8080
+    }
+    # convert into JSON:
+    y = json.dumps(x)
 
     c = Counter('static_increment_counter', 'Counter that increments by 50 every 2 seconds')
     g = Gauge('static_increment_gauge', 'Gauge that increments by 50 every 2 seconds')
@@ -47,6 +61,7 @@ if __name__ == '__main__':
             for sample in family.samples:
                  log.info("Name: {0} Labels: {1}  Value: {2}".format(*sample))
                  log.info("\"User email\": \"masked_user@example.com\"")
+                 log.info(y)
 
         time.sleep(15)
         run+=1
