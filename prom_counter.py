@@ -28,8 +28,8 @@ if __name__ == '__main__':
     x = {
       "asctime": "2020-03-27 05:51:50,017",
       "levelname": "INFO",
-      "message": "Initializing app on port: 8080",
-      "app_port": 8080
+      "message": "Testing logs with timestamp",
+      "app_port": 8000
     }
     # convert into JSON:
     y = json.dumps(x)
